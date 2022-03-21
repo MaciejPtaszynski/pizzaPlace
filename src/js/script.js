@@ -80,6 +80,7 @@
     
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      console.log(thisProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
@@ -87,15 +88,13 @@
     initAccordion(){
       const thisProduct = this;
       /* find the clickable trigger (the element that should react to clicking) */
-      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      // const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       /* START: add event listener to clickable trigger on event click */
-      clickableTrigger.addEventListener('click', function(event) {
-        console.log('click triger;', clickableTrigger);
+      thisProduct.accordionTrigger.addEventListener('click', function(event) {
         /* prevent default action for event */
         event.preventDefault();
         /* find active product (product that has active class) */
         const activeProduct = document.querySelector(select.all.menuProductsActive);
-        console.log('siemanochy', activeProduct);
         /* if there is active product and it's not thisProduct.element, remove class active from it */
         if (activeProduct != null && activeProduct != thisProduct.element){
           activeProduct.classList.remove('active');
@@ -108,6 +107,7 @@
     }
     initOrderForm(){
       const thisProduct = this;
+
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
         thisProduct.processOrder();
@@ -129,7 +129,7 @@
       const thisProduct = this;
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      console.log('formData-', formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -144,17 +144,23 @@
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log(optionId, option);
+          const selectedOption = formData[paramId] && formData[paramId].includes(optionId);
+          // check if option is not defult
+          if(selectedOption) {
+            if(option.defaul == true) {
+              price = price + option.price;
+            }
+          }
+          else if(!option.defaul == false) {
+            price = price - option.price;
+          }
         }
       }
-
-      // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
-      
     }
   }
-  
   const app = {
+
     initMenu: function(){
       const thisApp = this;
       console.log('thisApp.data', thisApp.data);
