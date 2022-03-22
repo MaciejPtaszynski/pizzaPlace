@@ -147,12 +147,13 @@
           const selectedOption = formData[paramId] && formData[paramId].includes(optionId);
           // check if option is not defult
           if(selectedOption) {
-            if(option.defaul == true) {
-              price = price + option.price;
+            if(!option.default == true) {
+              price += option.price;
             }
+          //if(option.defaul ==)
           }
-          else if(!option.defaul == false) {
-            price = price - option.price;
+          else if(!option.default == false) {
+            price = option.price;
           }
         }
       }
