@@ -44,7 +44,7 @@
     amountWidget: {
       defaultValue: 1,
       defaultMin: 1,
-      defaultMax: 10,
+      defaultMax: 9,
     }
   };
 
@@ -62,7 +62,7 @@
       thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
-      //console.log('new Product:', thisProduct);
+      
     }
     renderInMenu(){
       const thisProduct = this;
@@ -167,12 +167,17 @@
           }
         }
       }
+      //mulitiply price by amount
+      price *=thisProduct.amountWidget.value;
       thisProduct.priceElem.innerHTML = price;
     }
     initAmountWidget(){
       const thisProduct = this;
-
+      thisProduct.amountWidgetElem.addEventListener('updated', function(){
+        thisProduct.processOrder();
+      });
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      
     }
   }
   class AmountWidget{
@@ -197,20 +202,12 @@
       
       thisWidget.value = settings.amountWidget.defaultValue;
 
-      if(thisWidget.value !== newValue && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax){
+      if(thisWidget.value !== newValue && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin  && newValue <= settings.amountWidget.defaultMax){
+        //thisWidget.value = newValue;
+
         thisWidget.value = newValue;
-        // if(newValue >= settings.amountWidget.defaultMin){
-        //   thisWidget.value = newValue;
-        // }
-        // if(newValue <= settings.amountWidget.defaultMax){
-        //   thisWidget.value = newValue;
-        // }
-        thisWidget.value = newValue;
-        thisWidget.input.value = thisWidget.value;
-      
-        
+        thisWidget.input.value = thisWidget.value; 
       }
-      
     }
     initActions(){
       const thisWidget= this;
@@ -229,7 +226,12 @@
         thisWidget.setValue(thisWidget.value + 1);
       });
     }
+    announce(){
+      const thisWidget = this;
 
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
+    }
   }
   const app = {
 
