@@ -1,6 +1,6 @@
 .cart {
   position: absolute;
-  width: 270px;
+  width: 300px; // CODE CHANGED
   right: 0;
   top: $base-size;
   padding: ($base-size) ($base-size * 1.5);
@@ -151,7 +151,7 @@
 
     input, button {
       width: 100%;
-      margin-bottom: ($base-size * 0.5);
+      margin-bottom: ($base-size / 2);
     }
 
   }
