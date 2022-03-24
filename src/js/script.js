@@ -203,7 +203,7 @@
         }
       }
       //mulitiply price by amount
-      price *=thisProduct.amountWidget.value;
+      price *=thisProduct.amountWidget?.value;
       thisProduct.priceElem.innerHTML = price;
     }
     initAmountWidget(){
@@ -276,18 +276,23 @@
       const thisCart = this;
 
       thisCart.products = [];
-
       thisCart.getElements(element);
-      thisCart.initCart(); 
-      console.log('new Cart', thisCart);
+      thisCart.initActions();
     }
 
     getElements(element){
       const thisCart = this;
 
       thisCart.dom = {};
-
       thisCart.dom.wrapper = element;
+      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+    }
+    initActions(){
+      const thisCart = this;
+
+      thisCart.dom.toggleTrigger.addEventListener('click', function(){
+        thisCart.dom.wrapper.classList.toggle('active');
+      });
 
     }
   }
@@ -313,13 +318,15 @@
       console.log('templates:', templates);
       thisApp.initData();
       thisApp.initMenu();
+      thisApp.initCart();
+      
     },
     initCart: function(){
       const thisApp = this;
 
       const cartElem = document.querySelector(select.containerOf.cart);
       thisApp.cart = new Cart(cartElem);
-    }
+    },
   };
   app.init();
   
