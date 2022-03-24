@@ -203,7 +203,7 @@
         }
       }
       //mulitiply price by amount
-      price *=thisProduct.amountWidget?.value;
+      price *=thisProduct.amountWidget.value;
       thisProduct.priceElem.innerHTML = price;
     }
     initAmountWidget(){
@@ -278,7 +278,7 @@
       thisCart.products = [];
 
       thisCart.getElements(element);
-
+      thisCart.initCart(); 
       console.log('new Cart', thisCart);
     }
 
