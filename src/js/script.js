@@ -412,11 +412,9 @@
     remove(cartProduct){
       const thisCart = this;
 
-      const indexOfRemoveProduct = thisCart.products.indexOf(cartProduct);
-
-      thisCart.products.splice(indexOfRemoveProduct, 1);
-
-      //cartProduct.dom.wrapper.remove();
+      const indexOfCartProduct = thisCart.products.indexOf(cartProduct);
+      thisCart.products.splice(indexOfCartProduct, 1);
+      cartProduct.dom.wrapper.remove();
 
       thisCart.update();
     }
@@ -436,8 +434,6 @@
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget(); 
       thisCartProduct.initAction();
-
-      console.log('terefere', thisCartProduct);
     }
 
     getElements(element){
