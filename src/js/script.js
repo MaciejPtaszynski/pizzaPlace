@@ -163,7 +163,7 @@
         thisProduct.processOrder();
         thisProduct.addToCart();
       });
-      // console.log(this.initOrderForm);
+      
     }
     processOrder(){
       const thisProduct = this;
