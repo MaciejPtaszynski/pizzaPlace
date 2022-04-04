@@ -1,6 +1,6 @@
-import {settings, select, templates, classNames} from './settings.js';
+import {settings, select, templates} from './settings.js';
 import {utils} from './utils.js';
-import CartProduct from './CartProduct.js';
+import CartProduct from './components/CartProduct.js';
 
 class Cart{
   constructor(element){
@@ -13,20 +13,20 @@ class Cart{
   }
 
   getElements(element){
-      const thisCart = this;
+    const thisCart = this;
       
-      thisCart.dom = {};
-      thisCart.dom.wrapper = element;
+    thisCart.dom = {};
+    thisCart.dom.wrapper = element;
       
-      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
-      thisCart.dom.deliveryFee = document.querySelector(select.cart.deliveryFee),
-      thisCart.dom.subtotalPrice = document.querySelector(select.cart.subtotalPrice),
-      thisCart.dom.totalPrice = document.querySelectorAll(select.cart.totalPrice),
-      thisCart.dom.totalNumber = document.querySelector(select.cart.totalNumber);
-      thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
-      thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
-      thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+    thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+    thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+    thisCart.dom.deliveryFee = document.querySelector(select.cart.deliveryFee),
+    thisCart.dom.subtotalPrice = document.querySelector(select.cart.subtotalPrice),
+    thisCart.dom.totalPrice = document.querySelectorAll(select.cart.totalPrice),
+    thisCart.dom.totalNumber = document.querySelector(select.cart.totalNumber);
+    thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+    thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
+    thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
   }
 
   initActions(){
