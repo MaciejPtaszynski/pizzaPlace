@@ -48,7 +48,7 @@ class CartProduct{
       },
     });
     thisCartProduct.dom.wrapper.dispatchEvent(event);
-    console.log('zajebane', this.remove);
+    console.log('removed', this.remove);
   }
   initAction(){
     const thisCartProduct = this;
