@@ -107,7 +107,7 @@ class Product{
       }
     }
     thisProduct.priceSingle = price;
-    price *= thisProduct.amountWidget.value;
+    price *= thisProduct.amountWidget.correctValue;
     thisProduct.price = price;
     thisProduct.priceElem.innerHTML = price;
   }
@@ -124,7 +124,7 @@ class Product{
     const thisProduct = this;
     
     thisProduct.name = thisProduct.data.name;
-    thisProduct.amount = thisProduct.amountWidget.value;
+    thisProduct.amount = thisProduct.amountWidget.correctValue;
     // app.cart.add(thisProduct.prepareCartProduct());
     const event = new CustomEvent ('add-to-cart', {
       bubbles: true,
@@ -163,7 +163,7 @@ class Product{
     const productSummary = {
       id: thisProduct.id,
       name: thisProduct.data.name,
-      amount: thisProduct.amountWidget.value,
+      amount: thisProduct.amountWidget.correctValue,
       priceSingle: thisProduct.priceSingle,
       price: thisProduct.price,
       params: thisProduct.prepareCartProductParams(),
