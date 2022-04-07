@@ -9,6 +9,7 @@ class Booking{
     const thisBooking = this;
 
     thisBooking.render(element);
+    thisBooking.render();
     thisBooking.initWidgets();
     thisBooking.getData();  
   }
@@ -40,10 +41,11 @@ class Booking{
                                     + '?' + params.booking.join('&'),
       eventsCurrent:settings.db.url + '/' + settings.db.event
                                     + '?' + params.eventsCurrent.join('&'),
-      eventsRepeat: settings.db.url + '/' + settings.db.event 
+      eventsRepeat: settings.db.url + '/' + settings.db.event
                                     + '?' + params.eventsRepeat.join('&'),
     };
     console.log('urls', urls);
+
     Promise.all([
       fetch(urls.booking),
       fetch(urls.eventsCurrent),
@@ -59,8 +61,8 @@ class Booking{
           eventsRepeatResponse.json(),
         ]);
       })
-      .then(function([bookings, eventsCurrent, eventsRepeat]){
-        console.log(bookings);
+      .then(function([booking, eventsCurrent, eventsRepeat]){
+        console.log(booking);
         console.log(eventsCurrent);
         console.log(eventsRepeat);
       });
